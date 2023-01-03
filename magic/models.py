@@ -10,6 +10,9 @@ class User(AbstractUser):
     location = models.CharField(max_length=30, blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
 
+    def __str__(self):
+        return self.username
+
 
 class Collection(models.Model):
     name = models.CharField(max_length=200)
@@ -45,3 +48,6 @@ class Card(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, null=True)
     # this article is helpful for implementing image fields https://ordinarycoders.com/blog/article/django-file-image-uploads
+
+    def __str__(self):
+        return f'{self.name} held by {self.owner}'
