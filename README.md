@@ -25,7 +25,7 @@ A good place to start is planning out your Album model and making sure you can m
 Your app should have the following URLs. You'll need to define view functions to go along with each path. Remember, one view function can handle more than one type of request!
 
 | path                      | verb | purpose                                               |
-| ------------------------- | ---- | ----------------------------------------------------- | 
+| ------------------------- | ---- | ----------------------------------------------------- |
 | `""`                      | GET  | show a list of all the albums                         |
 | `/albums/new`             | GET  | show a form to create a new album                     |
 | `/albums/new`             | POST | create a new album                                    |

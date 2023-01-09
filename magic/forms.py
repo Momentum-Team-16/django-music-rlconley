@@ -6,4 +6,4 @@ class CardForm(forms.ModelForm):
 
     class Meta:
         model = Card
-        fields = ('name', 'edition', 'condition', 'language', 'release_date')
+        fields = ('name', 'edition', 'condition', 'language', 'release_date', 'collection')

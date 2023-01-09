@@ -17,6 +17,9 @@ class User(AbstractUser):
 class Collection(models.Model):
     name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 
 class Card(models.Model):
     NEAR_MINT = 'NM'
@@ -48,6 +51,7 @@ class Card(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, null=True)
     # this article is helpful for implementing image fields https://ordinarycoders.com/blog/article/django-file-image-uploads
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name='cards', blank=True, null=True)
 
     def __str__(self):
         return f'{self.name} held by {self.owner}'
