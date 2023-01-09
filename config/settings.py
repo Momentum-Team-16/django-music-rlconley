@@ -33,12 +33,16 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'registration',
     # registration has to go at the top of INSTALLED_APPS
+    'django_extensions',
+    # this gives us expanded tools in the shell
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
     'magic',
 ]
 
