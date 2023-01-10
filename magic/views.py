@@ -20,7 +20,6 @@ def index(request):
 
 
 def create_card(request):
-    breakpoint()
     if request.method == 'POST':
         # if the form was submitted
         form = CardForm(request.POST)
@@ -31,10 +30,21 @@ def create_card(request):
             # commit is false to hold off on putting data in db until additional info added
             card.owner = request.user
             card.save()
-            # saves new instance of Card in the db
-            return redirect('home')
-    # builds a blank card form to render on the page if the user visits the page initially (GET)
-    data = {
-        'created': 'yes'
-    }
+                # saves new instance of Card in the db
+
+            # builds a blank card form to render on the page if the user visits the page initially (GET)
+            data = {
+                'created': 'yes',
+                'card_title': card.name,
+                'card_owner': card.owner.username
+            }
+        else:
+            data = {
+                'errors': form.errors
+            }
+    else:
+        data = {
+            'response': "you can't do that here"
+        }
+    # update HTTPResponse to be a JsonResponse since user will not be visiting this url, just requests from JS
     return JsonResponse(data)

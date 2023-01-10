@@ -7,11 +7,13 @@
 <!-- I'm going to get rid of this, but it lets me know 
 what template is rendering. -->
 <h3>Here are the cards I own</h3>
-{% for card in cards %}
-<li>{{ card }}</li>
-{% empty %}
-<p>No cards yet :(</p>
-{% endfor %}
+<ul id="card-list">
+  {% for card in cards %}
+  <li>{{ card }}</li>
+  {% empty %}
+  <p>No cards yet :(</p>
+  {% endfor %}
+</ul>
 <br />
 <!-- <a href="{% url 'create-card' %}">Add Card</a> -->
 

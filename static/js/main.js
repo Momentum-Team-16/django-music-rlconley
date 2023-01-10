@@ -17,9 +17,15 @@ function getCookie(name) {
 const csrftoken = getCookie("csrftoken");
 
 const form = document.querySelector("#create-form");
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log("submitted");
+
+  const formData = new FormData(form);
+  // grabs data from the form to be put into the request body
+  console.log("formData", formData);
+
   fetch("cards/new", {
     method: "POST",
     credentials: "same-origin",
@@ -28,9 +34,17 @@ form.addEventListener("submit", (event) => {
       "X-Requested-With": "XMLHttpRequest",
       "X-CSRFToken": csrftoken,
     },
+    body: formData,
+    // include the data from the form in the body of the request
   })
     .then((response) => {
       return response.json();
     })
-    .then((data) => console.log(data));
+    .then((data) => {
+      console.log(data);
+      const cardList = document.querySelector("#card-list");
+      let newEl = document.createElement("li");
+      newEl.innerText = `${data.card_title} held by ${data.card_owner}`;
+      cardList.appendChild(newEl);
+    });
 });
